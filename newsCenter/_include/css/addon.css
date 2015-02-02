@@ -1,0 +1,10 @@
+.profile:hover {
+	-webkit-box-shadow:0 0 10px #0CC;  
+  	-moz-box-shadow:0 0 10px #0CC;  
+  	box-shadow:0 0 10px #0CC;
+  	height: 623px;
+}
+
+.text-wrap {
+	margin-left: 10px;
+}
