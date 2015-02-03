@@ -1,0 +1,7 @@
+h5.bigger {
+    font-size: 15px;
+}
+
+.widget-header>.widget-caption, .widget-header>:first-child {
+    line-height: 25px;
+}

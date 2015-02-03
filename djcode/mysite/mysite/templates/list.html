@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>list</title>
+    <link style="text/css" rel="STYLESHEET" href="/static/test.css">
+</head>
+<body>
+{% block content %}
+    {% for article in articles %}
+    <p>
+        {{article.id}}<br/>
+        {{article.title}}<br/>
+        {{article.desc}}<br/>
+        {{article.link}}<br/>
+        {{article.imgUrl}}<br/>
+        {{article.time}}<br/>
+    </p>
+    {% endfor %}
+{% endblock %}
+</body>
+</html>

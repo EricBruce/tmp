@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>审核中心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- basic styles -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <!-- page specific plugin styles -->
+    <!-- ace styles -->
+    <link rel="stylesheet" href="/static/css/ace.min.css"/>
+    <!-- inline styles related to this page -->
+    <link rel="stylesheet" href="/static/css/addon.css"/>
+</head>
+<body>
+
+<!-- TODO header颜色调整 -->
+
+<div class="main-container" id="main-container">
+    <div class="main-container-inner">
+        <div class="main-content" style="margin-left: 0px;">
+            <div class="page-content">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- PAGE CONTENT BEGINS -->
+                        <div class="row">
+                         {% block content %}
+                            {% for article in articles %}
+                            <div class="col-xs-6 col-sm-3 pricing-box">
+                                <div class="widget-box">
+                                    <div class="widget-header header-color-blue" style="height:52px;">
+                                        <h5 class="bigger lighter">{{article.title}}</h5>
+                                    </div>
+
+                                    <div class="widget-body">
+                                        <div class="widget-main" style="height:150px;">
+                                            {{article.desc}}
+                                            <p>
+                                                <a href="{{article.link}}">查看</a><br>
+                                                {{article.time}}
+                                            </p>
+
+                                            <div class="row">
+                                                <img src="{{article.imgUrl}}" height="50px" width="50px">
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <a href="/del/{{article.id}}" class="btn btn-block btn-primary">
+                                                <i class="icon-shopping-cart bigger-110"></i>
+                                                <span>Delete</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        {% endblock %}
+                        </div>
+                        <!-- PAGE CONTENT ENDS -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.page-content -->
+        </div>
+        <!-- /.main-content -->
+    </div>
+    <!-- /.main-container-inner -->
+    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+        <i class="icon-double-angle-up icon-only bigger-110"></i>
+    </a>
+</div>
+<!-- /.main-container -->
+<!-- basic scripts -->
+<script type="text/javascript">
+    function test() {
+        
+    }
+</script>
+</body>
+</html>
