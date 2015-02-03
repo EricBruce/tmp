@@ -88,7 +88,8 @@
 <div class="container">
     <!-- People -->
     <div class="row">
-    	
+    	<div id="target"></div>
+
         <!-- Start Profile -->
     	<div class="span4 profile">
         	<div class="image-wrap">
@@ -173,5 +174,21 @@
 </div>
 <!-- End About Section -->
 
+<script type="text/javascript" src="_include/js/mustache.js"></script>
+<script type="text/javascript" src="_include/js/jquery-1.11.2.js"></script>
+<script type="text/javascript">
+    $(function(){
+        //  var data = {"stooges": [{"name": "A"},{"name": "B"},{"name": "C"}]};
+        // get data json from rest web service
+        $.getJSON("news.json", function(data) {
+                var list = {"list": data}
+                $.get('template.mst', function(template){
+                    var result = Mustache.render(template, list);
+                    $("#target").html(result);
+                });
+        });
+
+    });
+</script>
 </body>
 </html>
