@@ -858,12 +858,12 @@ public class RedisUtil {
      * @param member
      * @return
      */
-    public Long incrbyWithSortedSet(final String key, final String member) {
-        return new Executor<Long>(shardedJedisPool) {
+    public Double incrbyWithSortedSet(final String key, final String member) {
+        return new Executor<Double>(shardedJedisPool) {
 
             @Override
-            Long execute() {
-                return Long.parseLong(jedis.zincrby(key, 1, member).toString());
+            Double execute() {
+                return Double.parseDouble(jedis.zincrby(key, 1, member).toString());
             }
         }.getResult();
     }

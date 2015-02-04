@@ -1,33 +1,39 @@
 package eric.yxs.newsit.resource;
 
+import com.alibaba.fastjson.JSON;
 import eric.yxs.newsit.model.News;
 import eric.yxs.newsit.service.NewsService;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
-import javax.inject.Singleton;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
-/**
- * Created by eric on 15-2-1.
- */
-@Singleton
+@Component
 @Path("/news")
 public class NewsResource {
     @Resource
     NewsService newsService;
 
     @GET
-    @Produces({"application/json", "application/xml"})
-    public List<News> getNews() {
+    public String getNews() {
         List<News> list = newsService.getAllNews();
-        return list;
+        return JSON.toJSONString(list);
     }
 
     @POST
-    @Produces({"application/json", "application/xml"})
-    public void diggNews(@PathParam("id") String id) {
+    @Path("{id}")
+    public Response diggNews(@PathParam("id") String id) {
         newsService.diggNews(id);
+        return Response.status(200).entity("OK").build();
+    }
+
+
+    @Path("/hello")
+    @GET
+    public Response hello() {
+        return Response.status(200).entity("Hello World").build();
     }
 }
 

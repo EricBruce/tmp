@@ -6,6 +6,7 @@ import eric.yxs.newsit.model.News;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import redis.clients.jedis.ShardedJedisPool;
 import util.MongoBeanUtil;
 import util.RedisUtil;
 
@@ -22,6 +23,8 @@ import java.util.List;
 public class NewsService implements INewsService {
     @Resource
     MongoDBDao mongoDBDao;
+    @Resource
+    ShardedJedisPool shardedJedisPool;
 
     @Value("${mongo_db}")
     private String db;
@@ -68,6 +71,7 @@ public class NewsService implements INewsService {
     @Override
     public int diggNews(String id) {
         RedisUtil redisUtil = new RedisUtil();
+        redisUtil.setShardedJedisPool(shardedJedisPool);
         if (redisUtil.isMemberOfSortedSet(diggKey, id)) {
             redisUtil.incrbyWithSortedSet(diggKey, id);
         } else {
